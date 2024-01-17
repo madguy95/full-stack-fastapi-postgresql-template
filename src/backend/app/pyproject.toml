@@ -33,6 +33,12 @@ flake8 = "^6.1.0"
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
 
+
+[[tool.poetry.source]]
+name = "fpho"
+url = "https://files.pythonhosted.org"
+priority = "primary"
+
 [tool.isort]
 multi_line_output = 3
 include_trailing_comma = true

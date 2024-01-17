@@ -72,8 +72,6 @@ services:
     image: postgres:12
     volumes:
       - app-db-data:/var/lib/postgresql/data/pgdata
-    ports:
-      - "5432:5432"
     env_file:
       - .env
     environment:
@@ -186,13 +184,11 @@ services:
       context: ./frontend
       args:
         FRONTEND_ENV: ${FRONTEND_ENV-production}
-    ports:
-      - "8080:80"
     deploy:
       labels:
         - traefik.enable=true
         - traefik.constraint-label-stack=${TRAEFIK_TAG?Variable not set}
-        - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/old`)
+        - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.rule=PathPrefix(`/`)
         - traefik.http.services.${STACK_NAME?Variable not set}-frontend.loadbalancer.server.port=80
   
   new-frontend:
